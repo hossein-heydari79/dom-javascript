@@ -5,7 +5,6 @@ const family = document.getElementById("family")
 const phone = document.getElementById("phone")
 const tbody = document.getElementById("tbody")
 let count = 0;
-
 form.addEventListener("submit", e => {
     e.preventDefault()
     checkInputs()
@@ -76,7 +75,13 @@ const checkInputs = () => {
 
         let i1 = document.createElement("i");
         td1.setAttribute("class", "delete");
+        td1.addEventListener("click", (e) => {
+            let parent = e.currentTarget.parentElement;
+
+            parent.remove();
+        })
         i1.className = "fa fa-close";
+        i1.style.cursor = "pointer";
 
         td1.append(i1);
 
@@ -86,7 +91,27 @@ const checkInputs = () => {
 
         let i2 = document.createElement("i");
         td2.setAttribute("class", "edit");
+        td2.addEventListener("click", (e) => {
+            let parent = e.currentTarget.parentElement;
+
+            let namee = parent.querySelector(".name");
+            let familyy = parent.querySelector(".family");
+            let emaill = parent.querySelector(".email");
+            let phonee = parent.querySelector(".phone");
+
+            let name_edit = prompt("Enter your edit name : ", namee.innerText);
+            let family_edit = prompt("Enter your edit family : ", familyy.innerText);
+            let email_edit = prompt("Enter your edit email : ", emaill.innerText);
+            let phone_edit = prompt("Enter your edit phone : ", phonee.innerText);
+
+            namee.innerText = name_edit;
+            familyy.innerText = family_edit;
+            emaill.innerText = email_edit;
+            phonee.innerText = phone_edit;
+
+        })
         i2.className = "fa fa-edit";
+        i2.style.cursor = "pointer";
 
         td2.append(i2);
 
@@ -126,49 +151,12 @@ const checkInputs = () => {
         tr.append(td7);
 
         tbody.append(tr);
+
+
+    } else {
+        counter = 0;
+
     }
-
-    counter = 0;
-
-
-    let del = document.getElementsByClassName("delete");
-
-    for (let i of del) {
-        i.addEventListener("click", (e) => {
-            let el = e.currentTarget;
-
-            let parent = el.parentElement;
-
-            parent.remove();
-        })
-    }
-
-
-    // let edit = document.getElementsByClassName("edit");
-
-    // for (let i of edit) {
-    //     i.addEventListener("click", (e) => {
-
-    //         let el = e.currentTarget;
-
-    //         let parent = el.parentElement;
-
-    //         let namee = parent.querySelector(".name");
-    //         let familyy = parent.querySelector(".family");
-    //         let emaill = parent.querySelector(".email");
-    //         let phonee = parent.querySelector(".phone");
-
-    //         let edit_name = prompt("Enter your edit name :", namee.innerText);
-    //         let edit_family = prompt("Enter your edit family :", familyy.innerText);
-    //         let edit_email = prompt("Enter your edit email :", emaill.innerText);
-    //         let edit_phone = prompt("Enter your edit phone :", phonee.innerText);
-
-    //         namee.innerText = edit_name;
-    //         familyy.innerText = edit_family;
-    //         emaill.innerText = edit_email;
-    //         phonee.innerText = edit_phone;
-    //     });
-    // }
 
 }
 
